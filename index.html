@@ -1,25 +1,30 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olivia Arasim | New Media Portfolio</title>
+    <title>Olivia Arasim | Jellykl Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
         /* ======================================================= */
-        /* BAUHAUS COLOR PALETTE & RESET                           */
-        /* Red: #D02B27 | Yellow: #EBB02D | Blue: #1951A0        */
-        /* Off-White: #F4F0EA | Black: #111111                     */
+        /* COLOR PALETTE: BAUHAUS + HOT PINK ACCENTS                */
+        /* Black: #0D0D0D | Pink: #FF2A85 | Red: #E63946          */
+        /* Yellow: #FFD166 | Blue: #118AB2 | Off-White: #F8F9FA   */
         /* ======================================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #111111;
-            color: #F4F0EA;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background-color: #0d0d0d;
+            color: #f8f9fa;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Star Canvas Background */
+        /* Vector Star Canvas Background */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -30,7 +35,7 @@
             pointer-events: none;
         }
 
-        /* Bauhaus Header */
+        /* Sleek Sticky Header */
         header {
             position: sticky;
             top: 0;
@@ -39,30 +44,38 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.2rem 8%;
-            background: #111111;
-            border-bottom: 4px solid #D02B27;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid #ff2a85;
         }
 
+        /* // TYPED NOTE: Custom Logo Font for Olivia Arasim */
         .logo {
-            font-size: 1.6rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #EBB02D;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #f8f9fa;
             text-transform: uppercase;
         }
 
+        .logo span {
+            color: #ff2a85;
+            font-style: italic;
+        }
+
         nav a {
-            color: #F4F0EA;
+            color: #f8f9fa;
             text-decoration: none;
             margin-left: 2rem;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             transition: color 0.2s ease;
         }
 
-        nav a:hover { color: #1951A0; }
+        nav a:hover { color: #ff2a85; }
 
         /* Main Container */
         main {
@@ -73,20 +86,18 @@
             padding: 2rem 2rem 4rem 2rem;
         }
 
-        /* ======================================================= */
-        /* HERO VIDEO SECTION                                      */
-        /* ======================================================= */
+        /* Loop Video Container with Pink Accent Border */
         .hero-video-container {
             position: relative;
             width: 100%;
-            max-height: 500px;
+            max-height: 480px;
             aspect-ratio: 16 / 9;
-            background: #000000;
-            border: 4px solid #1951A0;
-            border-radius: 4px;
+            background: #000;
+            border: 3px solid #ff2a85;
+            border-radius: 12px;
             overflow: hidden;
             margin-bottom: 3rem;
-            box-shadow: 8px 8px 0px #D02B27;
+            box-shadow: 10px 10px 0px #118ab2;
         }
 
         .hero-video-container video {
@@ -96,82 +107,93 @@
             display: block;
         }
 
-        .video-overlay-text {
+        .video-overlay-tag {
             position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            background: #111111;
-            padding: 0.5rem 1rem;
-            border-left: 4px solid #EBB02D;
+            bottom: 1.2rem;
+            left: 1.2rem;
+            background: #ff2a85;
+            color: #fff;
+            padding: 0.4rem 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            border-radius: 4px;
         }
 
-        /* Hero / Bio Text Block */
+        /* Hero Text Container */
         .hero-bio {
-            text-align: left;
             padding: 2.5rem;
-            background: #181818;
-            border-left: 8px solid #EBB02D;
+            background: #171717;
+            border-left: 8px solid #ffd166;
+            border-radius: 0 12px 12px 0;
             margin-bottom: 4rem;
         }
 
-        /* // TYPED NOTE: Insert your Headline / Title below */
+        /* // TYPED NOTE: Main Headline Title */
         .hero-bio h1 { 
-            font-size: 2.8rem; 
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem; 
             margin-bottom: 0.8rem; 
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #F4F0EA;
+            line-height: 1.1;
         }
 
-        /* // TYPED NOTE: Insert your Personal Bio below */
+        /* // TYPED NOTE: Short Bio Paragraph */
         .hero-bio p { 
-            color: #F4F0EA; 
-            max-width: 750px; 
+            color: #f8f9fa; 
+            max-width: 700px; 
             line-height: 1.6; 
             font-size: 1.1rem;
+            opacity: 0.9;
         }
 
-        /* Gallery Section & Category Filters */
+        /* Gallery Headers & Filters */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 42, 133, 0.3);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .gallery-title { 
-            font-size: 2rem; 
-            margin-bottom: 2rem; 
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem; 
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 2px solid #F4F0EA;
-            padding-bottom: 0.5rem;
         }
 
         .filter-buttons {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            background: #181818;
-            border: 2px solid #F4F0EA;
-            color: #F4F0EA;
-            padding: 0.6rem 1.4rem;
+            background: #171717;
+            border: 2px solid #f8f9fa;
+            color: #f8f9fa;
+            padding: 0.5rem 1.2rem;
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
             letter-spacing: 1px;
+            font-size: 0.8rem;
+            border-radius: 30px;
             transition: all 0.2s ease;
         }
 
         .filter-btn:hover, .filter-btn.active {
-            background: #D02B27;
-            border-color: #D02B27;
-            color: #F4F0EA;
-            box-shadow: 4px 4px 0px #EBB02D;
+            background: #ff2a85;
+            border-color: #ff2a85;
+            color: #fff;
+            box-shadow: 4px 4px 0px #ffd166;
         }
 
-        /* Card Grid Layout */
+        /* Modern Card Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -179,25 +201,25 @@
         }
 
         .card {
-            background: #181818;
-            border: 3px solid #F4F0EA;
+            background: #171717;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.25 ease, box-shadow 0.25s ease, border-color 0.25s ease;
             cursor: pointer;
-            position: relative;
         }
 
         .card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 8px 8px 0px #1951A0;
+            transform: translateY(-6px);
+            border-color: #ff2a85;
+            box-shadow: 0 12px 24px rgba(255, 42, 133, 0.2);
         }
 
         .card-media {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            background: #000000;
-            border-bottom: 3px solid #F4F0EA;
+            background: #000;
         }
 
         .card-body { padding: 1.5rem; }
@@ -206,29 +228,30 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: #EBB02D;
-            font-weight: 900;
+            color: #ff2a85;
+            font-weight: 700;
         }
 
         .card-title { 
+            font-family: 'Syne', sans-serif;
             font-size: 1.4rem; 
             margin: 0.4rem 0; 
             text-transform: uppercase;
         }
 
         .card-desc { 
-            color: #F4F0EA; 
+            color: #f8f9fa; 
             font-size: 0.95rem; 
             line-height: 1.5; 
-            opacity: 0.85;
+            opacity: 0.8;
         }
 
-        /* Modal Lightbox */
+        /* Modal Overlay */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(17, 17, 17, 0.95);
+            background: rgba(13, 13, 13, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -236,34 +259,31 @@
         }
 
         .modal-content {
-            background: #181818;
+            background: #171717;
             padding: 2.5rem;
-            max-width: 700px;
+            max-width: 650px;
             width: 100%;
-            border: 4px solid #D02B27;
+            border: 3px solid #ff2a85;
+            border-radius: 16px;
             position: relative;
-            box-shadow: 12px 12px 0px #EBB02D;
+            box-shadow: 10px 10px 0px #ffd166;
         }
 
         .close-btn {
             position: absolute;
             top: 1rem; right: 1.5rem;
             font-size: 2rem;
-            color: #F4F0EA;
+            color: #f8f9fa;
             cursor: pointer;
-            font-weight: 900;
         }
     </style>
 </head>
 <body>
 
-    <!-- Rotating Star Canvas -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Navigation Header -->
     <header>
-        <!-- // TYPED NOTE: Insert your Personal Brand / Name here -->
-        <div class="logo">JELLYKL</div>
+        <div class="logo">Olivia <span>Arasim</span></div>
         <nav>
             <a href="#work">Work</a>
             <a href="#about">About</a>
@@ -273,85 +293,57 @@
 
     <main>
 
-        <!-- ======================================================= -->
-        <!-- LOOPING HERO VIDEO SECTION                              -->
-        <!-- ======================================================= -->
         <section class="hero-video-container">
-            <!-- 
-                // NOTES FOR HERO VIDEO:
-                // 1. Add your video file (e.g., hero-loop.mp4) to your GitHub repository folder.
-                // 2. Change src="your-looping-video.mp4" below to match your video file name.
-                // 3. Keep 'autoplay muted loop playsinline' enabled so browsers allow auto-playback.
-            -->
-            <video autoplay muted loop playsinline poster="https://via.placeholder.com/1200x500/111111/F4F0EA?text=Hero+Video+Poster">
-                <source src="your-looping-video.mp4" type="video/mp4">
-                Your browser does not support video playback.
+            <video autoplay muted loop playsinline poster="https://via.placeholder.com/1200x500/0d0d0d/ff2a85?text=Olivia+Arasim+Reel">
+                <source src="hero-reel.mp4" type="video/mp4">
             </video>
-            <div class="video-overlay-text">// SHOWREEL LOOP 2026</div>
+            <div class="video-overlay-tag">// REEL 2026</div>
         </section>
 
-        <!-- Hero / Bio Section -->
         <section class="hero-bio" id="about">
-            <!-- // TYPED NOTE: Insert your main Headline/Title here -->
             <h1>New Media Design & Practice</h1>
             
-            <!-- // TYPED NOTE: Insert your mini-bio or artist statement here -->
-            <p>Constructing digital artifacts, physical computing experiments, and interactive video systems grounded in classic functional aesthetics. Welcome to the portfolio archive.</p>
+            <p>Welcome! I'm Olivia Arasim, a new media artist blending motion graphics, sleek interface design, and modern digital illustration. Explore my interactive archive below.</p>
         </section>
 
-        <!-- Gallery Section -->
         <section id="work">
-            <h2 class="gallery-title">Index of Works</h2>
+            <div class="section-header">
+                <h2 class="gallery-title">Selected Works</h2>
 
-            <!-- Category Filter Buttons -->
-            <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterGallery('all')">All</button>
-                <button class="filter-btn" onclick="filterGallery('code')">Code</button>
-                <button class="filter-btn" onclick="filterGallery('video')">Video</button>
-                <button class="filter-btn" onclick="filterGallery('3d')">3D</button>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+                    <button class="filter-btn" onclick="filterGallery('motion')">Motion</button>
+                    <button class="filter-btn" onclick="filterGallery('uiux')">UI / UX</button>
+                    <button class="filter-btn" onclick="filterGallery('illustration')">Illustration</button>
+                </div>
             </div>
 
-            <!-- Project Grid -->
             <div class="grid">
 
-                <!-- PROJECT CARD 1 -->
-                <!-- // NOTES: Set data-category to match your filter ("code", "video", "3d") -->
-                <div class="card" data-category="code" onclick="openModal('Generative Canvas System', 'Algorithmic artwork written in JavaScript. Explores vector math and canvas drawing routines.')">
-                    <!-- // NOTES: Replace src with your image or GIF file (e.g., project1.jpg) -->
-                    <img src="https://via.placeholder.com/600x400/D02B27/F4F0EA?text=Project+01" alt="Project 1 Thumbnail" class="card-media">
+                <div class="card" data-category="motion" onclick="openModal('Kinetic Motion Experiment', 'A frame-by-frame animation exploring rhythmic timing and neon color palettes.')">
+                    <img src="https://via.placeholder.com/600x400/ff2a85/ffffff?text=Motion+Graphics" alt="Motion Project" class="card-media">
                     <div class="card-body">
-                        <!-- // TYPED NOTE: Category Tag -->
-                        <span class="card-tag">Code</span>
-                        <!-- // TYPED NOTE: Project Title -->
-                        <h3 class="card-title">Vector Syntax</h3>
-                        <!-- // TYPED NOTE: Short Description -->
-                        <p class="card-desc">Interactive canvas script calculating real-time geometric transforms.</p>
+                        <span class="card-tag">Motion</span>
+                        <h3 class="card-title">Kinetic Sync</h3>
+                        <p class="card-desc">Experimental motion sequence designed around sound frequencies and hot pink vector forms.</p>
                     </div>
                 </div>
 
-                <!-- PROJECT CARD 2 -->
-                <div class="card" data-category="video" onclick="openModal('Experimental Video Loop', 'Multi-channel video installment converted to single channel web format.')">
-                    <!-- // NOTES: Replace src with your image or GIF file -->
-                    <img src="https://via.placeholder.com/600x400/1951A0/F4F0EA?text=Project+02" alt="Project 2 Thumbnail" class="card-media">
+                <div class="card" data-category="uiux" onclick="openModal('Spatial Mobile UI', 'A mobile app interface designed for spatial video curation and interactive soundboards.')">
+                    <img src="https://via.placeholder.com/600x400/118ab2/ffffff?text=UI/UX+Prototype" alt="UI/UX Project" class="card-media">
                     <div class="card-body">
-                        <!-- // TYPED NOTE: Category Tag -->
-                        <span class="card-tag">Video</span>
-                        <!-- // TYPED NOTE: Project Title -->
-                        <h3 class="card-title">Analog Drift</h3>
-                        <p class="card-desc">Signal processing and glitch synthesis synthesized for video playback.</p>
+                        <span class="card-tag">UI / UX</span>
+                        <h3 class="card-title">Aura Interface</h3>
+                        <p class="card-desc">Modern dark-mode mobile UI focused on high contrast interaction and micro-animations.</p>
                     </div>
                 </div>
 
-                <!-- PROJECT CARD 3 -->
-                <div class="card" data-category="3d" onclick="openModal('Constructivist 3D Render', 'Spatial scene inspired by early 20th-century constructivism and architectural design.')">
-                    <!-- // NOTES: Replace src with your image or GIF file -->
-                    <img src="https://via.placeholder.com/600x400/EBB02D/111111?text=Project+03" alt="Project 3 Thumbnail" class="card-media">
+                <div class="card" data-category="illustration" onclick="openModal('Digital Vector Series', 'A series of constructivist digital art pieces focused on bold line work and high-saturation color.')">
+                    <img src="https://via.placeholder.com/600x400/ffd166/0d0d0d?text=Digital+Illustration" alt="Illustration Project" class="card-media">
                     <div class="card-body">
-                        <!-- // TYPED NOTE: Category Tag -->
-                        <span class="card-tag">3D</span>
-                        <!-- // TYPED NOTE: Project Title -->
-                        <h3 class="card-title">Primary Form</h3>
-                        <p class="card-desc">Spatial composition focused on basic geometric solids and light play.</p>
+                        <span class="card-tag">Illustration</span>
+                        <h3 class="card-title">Neo-Bauhaus Prints</h3>
+                        <p class="card-desc">Vector illustration collection exploring modern geometric shapes and high-chroma pink accents.</p>
                     </div>
                 </div>
 
@@ -359,24 +351,22 @@
         </section>
     </main>
 
-    <!-- Modal Lightbox -->
     <div class="modal" id="projectModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" style="margin-bottom: 1rem; text-transform: uppercase;">Project Title</h2>
-            <p id="modalDesc" style="color: #F4F0EA; line-height: 1.6;">// TYPED NOTE: Detailed text description appears here when clicked.</p>
+            <h2 id="modalTitle" style="font-family: 'Syne', sans-serif; margin-bottom: 1rem; text-transform: uppercase;">Project Title</h2>
+            <p id="modalDesc" style="color: #f8f9fa; line-height: 1.6;">// TYPED NOTE: Detailed description populates here on click.</p>
         </div>
     </div>
 
-    <!-- Star Animation & Interaction Script -->
     <script>
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
-        // Bauhaus Palette Array for Stars
-        const bauhausColors = ['#D02B27', '#EBB02D', '#1951A0', '#F4F0EA'];
+        // Palette with Hot Pink included
+        const palette = ['#ff2a85', '#e63946', '#ffd166', '#118ab2', '#f8f9fa'];
         const stars = [];
 
         window.addEventListener('resize', () => {
@@ -384,7 +374,6 @@
             height = canvas.height = window.innerHeight;
         });
 
-        // 5-Point Star Vector Drawing Function
         function drawStar(cx, cy, spikes, outerRadius, innerRadius, color, angle) {
             let rot = Math.PI / 2 * 3;
             let x = cx;
@@ -416,22 +405,20 @@
             ctx.restore();
         }
 
-        // Initialize Star Particles
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 40; i++) {
             stars.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                outerR: Math.random() * 6 + 4,
-                innerR: Math.random() * 3 + 2,
-                color: bauhausColors[Math.floor(Math.random() * bauhausColors.length)],
-                dx: (Math.random() - 0.5) * 0.4,
-                dy: (Math.random() - 0.5) * 0.4,
+                outerR: Math.random() * 5 + 3,
+                innerR: Math.random() * 2.5 + 1.5,
+                color: palette[Math.floor(Math.random() * palette.length)],
+                dx: (Math.random() - 0.5) * 0.3,
+                dy: (Math.random() - 0.5) * 0.3,
                 angle: Math.random() * Math.PI * 2,
                 rotSpeed: (Math.random() - 0.5) * 0.02
             });
         }
 
-        // Star Animation Loop
         function animateStars() {
             ctx.clearRect(0, 0, width, height);
             stars.forEach(s => {
@@ -450,7 +437,6 @@
         }
         animateStars();
 
-        // Gallery Filter Logic
         function filterGallery(category) {
             const cards = document.querySelectorAll('.card');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -467,7 +453,6 @@
             });
         }
 
-        // Modal Controls
         function openModal(title, desc) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = desc;
