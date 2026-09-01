@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jellykl | New Media Portfolio</title>
+    <style>
+        /* Base Styles & Theme Variables */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Canvas Particle Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Sticky Glassmorphism Navigation Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover { color: #38bdf8; }
+
+        /* Main Container Layout */
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero / Bio Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { color: #94a3b8; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        /* Project Gallery & Filter Controls */
+        .gallery-section { margin-top: 2rem; }
+        .gallery-title { text-align: center; margin-bottom: 2rem; font-size: 2rem; }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Interactive Card Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .card-media {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #1e293b;
+        }
+
+        .card-body { padding: 1.5rem; }
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+        .card-title { font-size: 1.3rem; margin: 0.5rem 0; }
+        .card-desc { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
+
+        /* Lightbox Modal for Project Preview */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem; right: 1.5rem;
+            font-size: 1.8rem;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <div class="logo">JELLYKL</div>
+        <nav>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="about">
+            <h1>New Media Artist & Designer</h1>
+            
+            <p>Exploring the intersection of interactive code, visual design, and emerging digital technology. Welcome to my portfolio showcase.</p>
+        </section>
+
+        <section class="gallery-section" id="work">
+            <h2 class="gallery-title">Featured Projects</h2>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterGallery('all')">All Works</button>
+                <button class="filter-btn" onclick="filterGallery('code')">Creative Coding</button>
+                <button class="filter-btn" onclick="filterGallery('3d')">3D & Motion</button>
+                <button class="filter-btn" onclick="filterGallery('ui')">UI/UX Design</button>
+            </div>
+
+            <div class="grid">
+
+                <div class="card" data-category="code" onclick="openModal('Generative Canvas System', 'An exploration of algorithmic art and interactive canvas rendering.')">
+                    <img src="https://via.placeholder.com/600x400/38bdf8/ffffff?text=Interactive+Code" alt="Project Thumbnail" class="card-media">
+                    <div class="card-body">
+                        <span class="card-tag">Creative Coding</span>
+                        <h3 class="card-title">Generative Canvas</h3>
+                        <p class="card-desc">Interactive canvas script responding to cursor telemetry and physics.</p>
+                    </div>
+                </div>
+
+                <div class="card" data-category="3d" onclick="openModal('3D Environment Design', 'Low-poly atmospheric world crafted for interactive web experiences.')">
+                    <img src="https://via.placeholder.com/600x400/818cf8/ffffff?text=3D+Environment" alt="Project Thumbnail" class="card-media">
+                    <div class="card-body">
+                        <span class="card-tag">3D & Motion</span>
+                        <h3 class="card-title">Neon Wasteland</h3>
+                        <p class="card-desc">Real-time rendered 3D scene built with Three.js and custom shaders.</p>
+                    </div>
+                </div>
+
+                <div class="card" data-category="ui" onclick="openModal('Futuristic Dashboard', 'Interface design exploring spatial UI elements for Next-Gen apps.')">
+                    <img src="https://via.placeholder.com/600x400/f43f5e/ffffff?text=UI/UX+Interface" alt="Project Thumbnail" class="card-media">
+                    <div class="card-body">
+                        <span class="card-tag">UI/UX Design</span>
+                        <h3 class="card-title">CyberDeck Interface</h3>
+                        <p class="card-desc">User interface concept designed for futuristic spatial computing devices.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="margin-bottom: 1rem;">Project Title</h2>
+            <p id="modalDesc" style="color: #94a3b8; line-height: 1.6;">Full project overview and details go here.</p>
+        </div>
+    </div>
+
+    <script>
+        // Interactive Canvas Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        const particles = [];
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 2 + 1,
+                dx: (Math.random() - 0.5) * 0.5,
+                dy: (Math.random() - 0.5) * 0.5
+            });
+        }
+
+        function animateBg() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+            particles.forEach(p => {
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > width) p.dx *= -1;
+                if (p.y < 0 || p.y > height) p.dy *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animateBg);
+        }
+        animateBg();
+
+        // Project Gallery Filtering
+        function filterGallery(category) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Controls
+        function openModal(title, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('projectModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
